@@ -15,7 +15,7 @@ import Foundation
 // providing a stream of the data (in this case a tar stream from IPFS).
 
 
-class HttpStream : NSObject, URLSessionDataDelegate {
+public class HttpStream : NSObject, URLSessionDataDelegate {
     
     var inputStream: InputStream?
     var outputStream: OutputStream?
