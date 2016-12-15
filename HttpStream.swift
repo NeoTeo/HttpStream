@@ -57,13 +57,13 @@ public class HttpStream : NSObject, URLSessionDataDelegate {
 	
 	
     /// Called when url session task completed.
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
 		if error != nil { print("ERROR urlSession: \(error)") }
         totalSessionByteCount = sessionByteCount
         checkForEnd()
     }
     
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
 
 		/// Track the total received bytecount.
         sessionByteCount += data.count
@@ -88,7 +88,7 @@ public class HttpStream : NSObject, URLSessionDataDelegate {
 extension HttpStream : StreamDelegate {
     
     
-    func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
+    public func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         
         let isInputStream = aStream.isEqual(inputStream)
         
