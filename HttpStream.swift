@@ -83,6 +83,10 @@ public class HttpStream : NSObject, URLSessionDataDelegate {
             }
         }
     }
+
+    public func finish() {
+        session.finishTasksAndInvalidate()
+    }
 }
 
 extension HttpStream : StreamDelegate {
