@@ -58,7 +58,7 @@ public class HttpStream : NSObject, URLSessionDataDelegate {
     
     /// Called when url session task completed.
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if error != nil { print("ERROR urlSession: \(error)") }
+        if let error = error { print("ERROR urlSession: \(error)") }
         totalSessionByteCount = sessionByteCount
         checkForEnd()
     }
@@ -110,7 +110,7 @@ extension HttpStream : StreamDelegate {
             }
             
         case Stream.Event.errorOccurred:
-            print("Error! \(aStream.streamError?.localizedDescription)")
+            print("Error! \(String(describing: aStream.streamError?.localizedDescription))")
             
         default:
             print("We got nuffink.\(eventCode.rawValue)")
@@ -140,7 +140,7 @@ extension HttpStream : StreamDelegate {
             bytesWritten = out.write(bytes, maxLength: writeByteCount)
             
             guard bytesWritten != -1 else {
-                print("Error writing: \(out.streamError)")
+                print("Error writing: \(String(describing: out.streamError))")
                 return data
             }
             /// Debug: Track total bytes written out.
